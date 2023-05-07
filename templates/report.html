@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>
+            Report
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    </head>
+    <body>
+        
+
+     
+     <div class="row" style="background-color:rgb(157, 133, 201);border-style: solid;border-width: medium;border-color:rgb(157, 133, 201);border-top: 25px solid rgb(157, 133, 201)">
+      <div class="col-4 px-5">
+      <p style="color:rgb(255, 255, 255);"> <b style="font-size:17px;"> BlogLite </b></p>
+      </div>
+      <div class="col-4 px-5">
+       <p> <b style="text-align:center;font-size:17px;margin-top:-10px;color:rgb(255, 255, 255);margin-left:70px;">Monthly Report</b> </p>
+      </div>
+      <div class="col-4 px-5">
+       <b style="color:rgb(255, 255, 255);margin-left:90px;">{{date}}</b>
+      </div>
+      </div>
+     <br><br>
+       <div class="row">
+        <div class="col">
+        <img src="data:image/png;base64,{{ image_data }}" style="width: 10rem; margin-left:90px; border-radius: 5%;">
+        </div>
+        <div class="col">
+        <p style="font-size:18px;margin-left:-200px;"> Name: {{data1[0]["name"]}} <br> 
+        Email: {{data1[0]["email"]}} </p>
+        </div>
+        </div>
+
+<br><br>
+<div class="row mx-auto">
+
+<div class="col-6 px-5">
+   
+ <div class="card" style="width: 23rem; margin-left:40px;">
+  <div class="card-header">
+    Total Following: {{ following|count -1 }}
+  </div>
+  <ul class="list-group list-group-flush">
+    {% for email in following %}
+      {% if data1[0]["email"] != email.decode() %}
+         <li class="list-group-item">{{email.decode()}}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+</div>
+
+            
+<div class="col-6 px-5">
+
+  <div class="card" style="width: 23rem; margin-left:-5px;">
+    <div class="card-header">
+      Total Followers: {{ followers|count -1 }}
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for email in followers %}
+        {% if data1[0]["email"] != email.decode() %}
+          <li class="list-group-item">{{email.decode()}}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+</div>
+
+
+
+
+<br><br>
+<p style="margin-left:85px;"> Total Posts: {{ data2|count }} </p>
+<div class="row">
+  <div class="col-1"> </div>
+    <div class="col">
+      {% if data2 %}  
+        <table class="table table-bordered table-striped">
+            <thead>
+              <tr style="background-color:rgb(157, 133, 201);color:white">
+                
+                <th scope="col">Title</th>
+                <th scope="col">Caption</th>
+                <th scope="col">Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in data2 %}
+              <tr>
+                
+                <td>{{d.title}}</td>
+                <td>{{d.caption}}</td>
+                <td>{{d.timestamp}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+        <div class="col-1"> </div>   
+        </div>
+       
+    </body>
+</html>

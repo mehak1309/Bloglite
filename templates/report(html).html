@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>
+            Monthly Report
+        </title>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                border-radius: 0.5em;
+              }
+              
+              td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+              }
+              
+              tr:nth-child(even) {
+                background-color: rgb(234, 223, 245);
+              }  
+
+              * {
+                box-sizing: border-box;
+              }
+              
+              .row {
+                margin-left:-5px;
+                margin-right:-5px;
+              }
+                
+              .column {
+                float: left;
+                width: 50%;
+                padding: 5px;
+              }
+              
+              /* Clearfix (clear floats) */
+              .row::after {
+                content: "";
+                clear: both;
+                display: table;
+              }
+              body {
+                font-family: 'Trebuchet MS', sans-serif;
+                font-size: 20px;
+              }
+              p {
+                padding: 5px;
+              }
+        </style>
+    </head>
+    <body>
+
+    <div style="background-color:rgb(157, 133, 201);border-style: solid;border-width: medium;border-color:rgb(157, 133, 201);border-top: 5px solid rgb(157, 133, 201);color:white;">
+       <p><b style="margin-left:50px;">Bloglite</b>  <b style="margin-left:300px;"> Monthly Report</b>  <b style="margin-left:200px;">{{date}}</b></p>
+
+
+     
+
+    </div>
+    <p>Hi {{data1[0]["name"]}},
+<br><br>
+        It's time for your monthly insights report! We've compiled some key statistics on your account's growth and engagement to help you understand how your content is performing.
+        <br><br>
+        Here are your insights for this month:</p> 
+       
+<p style="padding: 5px;">
+    Name: {{data1[0]["name"]}} <br>
+    Email: {{data1[0]["email"]}}
+</p>
+<br>
+
+
+<div class="row">
+    <div class="column">
+      <table>
+        <tr>
+          <th style="background-color:rgb(157, 133, 201); color:white;">Total Following: {{ following|count -1 }}</th>
+        </tr>
+        {% for email in following %}
+            {% if data1[0]["email"] != email.decode() %}
+              <tr>
+                <td>{{ email.decode() }}</td>
+              </tr>
+            {% endif %}
+        {% endfor %}
+      </table>
+    </div>
+    <div class="column">
+
+    
+      <table>
+        <tr>
+          <th style="background-color:rgb(157, 133, 201);color:white;">Total Followers: {{ followers|count -1 }}</th>
+        </tr>
+        {% for email in followers %}
+            {% if data1[0]["email"] != email.decode() %}
+            <tr>
+                <td>{{ email.decode() }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+      </table>
+
+    </div>
+  </div>
+  
+
+
+
+
+
+
+  <p style="padding:5px;"> Total Posts: {{ data2|count }} </p>
+  {% if data2 %}  
+    <table>
+        <tr style="background-color:rgb(157, 133, 201);color:white;">
+          <th>Title</th>
+          <th>Caption</th>
+          <th>Timestamp</th>
+        </tr>
+        {% for d in data2 %}
+        <tr>
+          <td>{{d.title}}</td>
+          <td>{{d.caption}}</td>
+          <td>{{d.timestamp}}</td>
+        </tr>
+        {% endfor %}    
+      </table>
+      {% endif %}
+      
+<p>
+      We hope this information is helpful as you continue to grow your presence on BlogLite. Please don't hesitate to reach out if you have any questions or feedback.
+<br><br>
+Thanks for using BlogLite!
+<br><br>
+Best, <br>
+The BlogLite Team
+
+</p>
+
+
+
+
+
+    </body>
+</html>

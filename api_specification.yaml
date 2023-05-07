@@ -1,0 +1,624 @@
+openapi: 3.0.3
+
+info:
+  title: Bloglite API
+  description: "API documentation for Bloglite Application"
+  contact:
+    email: 21f1006390@student.iitm.ac.in
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/
+
+paths:
+  /api/signup:
+    get:
+      tags:
+        - Account
+      summary: Navigate to the sign up page
+      responses:
+        '200':
+          description: Successfully rendered the page
+        '400':
+          description: Error occured
+
+    post:
+      tags:
+        - Account
+      summary: Add a new user to the application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                profile_picture:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - profile_picture
+                - password
+      responses:
+        '200':
+          description: Successfully added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+          
+
+  /api/add_post:
+    get:
+      tags:
+        - User Post
+      summary: Navigate to the add post page
+      responses:
+        '200':
+          description: Successfully rendered the page
+        '400':
+          description: Error occured
+
+    post:
+      tags:
+        - User Post
+      summary: Add a new post to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                caption:
+                  type: string
+                post_picture:
+                  type: string
+                  format: binary
+              required:
+                - title
+                - content
+                - post_picture
+      responses:
+        '200':
+          description: Successfully Added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Error occured
+
+     
+  /api/edit_account:
+    put:
+      tags:
+        - Account
+      summary: Edit the account details of a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                profile_picture:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+              required:
+                - name
+                - profile_picture
+                - password
+      responses:
+        '200':
+          description: Successfully made changes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured   
+          
+    delete:
+      tags:
+        - Account
+      summary: Delete the account of a user
+      responses:
+        '200':
+          description: Successfully deleted the account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occurred
+          
+          
+  /api/edit_post/{id}:
+    post:
+      tags:
+        - User Post
+      summary: Edit the details of a specific post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the post to edit
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully edited the post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Post not found
+          
+          
+  /api/logout:
+    get:
+      tags:
+        - Account
+      summary: Log out the currently logged in user
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          
+          
+  /api/follow_user:
+    post:
+      tags:
+        - Follow
+      summary: Follow a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                following:
+                  type: integer
+              required:
+                - id
+                - following
+      responses:
+        '200':
+          description: Successfully added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+          
+          
+  /api/unfollow_user:
+    post:
+      tags:
+        - Follow
+      summary: Unfollow a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                following:
+                  type: integer
+              required:
+                - id
+                - following
+      responses:
+        '200':
+          description: Successfully added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+          
+          
+  /api/getfollowdetails/{id}:
+    get:
+      tags:
+        - Follow
+      summary: Get details of a followers and following
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the follower to add
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully added the follower
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Error occured
+  
+  /api/getmyposts:
+    get:
+        tags:
+          - User Post
+        summary: Get the logged in user's posts
+        responses:
+          '200':
+            description: Successful
+          '400':
+            description: Error occured
+            
+  /api/getallposts:
+    get:
+        tags:
+          - User Post
+        summary: Get the all users's posts
+        responses:
+          '200':
+            description: Successful
+          '400':
+            description: Error occured
+            
+  /api/getspecificuserdetails/{id}:
+    get:
+      tags:
+        - Account
+      summary: Get details of a specific user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The account id of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Error occured
+          
+  /api/getothersposts/{id}:
+    get:
+      tags:
+        - User Post
+      summary: Get details of posts made by a user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The account id of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Error occured
+
+           
+  /api/getallusersdetails:
+    get:
+        tags:
+          - Account
+        summary: Get the all user's account details
+        responses:
+          '200':
+            description: Successful
+          '400':
+            description: Error occured
+            
+  /api/getusersdetails:
+    get:
+        tags:
+          - Account
+        summary: Get the the logged in user's account details
+        responses:
+          '200':
+            description: Successful
+          '400':
+            description: Error occured
+            
+  /api/deletepost/{id}:
+    delete:
+      tags:
+        - User Post
+      summary: Delete the post made by a user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the post
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted the post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occurred
+          
+  
+  /api/celery_export_post:
+    post:
+      tags:
+        - Import/Export - Celery 
+      summary: Export a post into a CSV format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                caption:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+                timestamp:
+                  type: string
+                post_id:
+                  type: integer
+                email:
+                  type: string
+              required:
+                - title
+                - caption
+                - image
+                - timestamp
+                - post_id
+                - email
+      responses:
+        '200':
+          description: Successfully exported the file
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+  
+  /api/status/{id}:
+    get:
+        tags:
+          - Import/Export - Celery 
+        summary: Get the the status of the task
+        parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the task
+          schema:
+            type: string
+        responses:
+          '200':
+            description: Successful
+          '400':
+            description: Error occured
+            
+  /api/download-file:
+    get:
+        tags:
+          - Import/Export - Celery 
+        summary: Download the csv file
+        responses:
+          '200':
+            description: Successfully downloaded
+          '400':
+            description: Error occured
+            
+  /api/celery_import_post:
+    post:
+      tags:
+        - Import/Export - Celery 
+      summary: Import a post into a CSV format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                csv_file:
+                  type: string
+              required:
+                - csv_file
+      responses:
+        '200':
+          description: Successfully imported the file
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+          
+          
+  /api/update_archive:
+    post:
+      tags:
+        - User Post
+      summary: Archive/unarchive a user's post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: boolean
+              required:
+                - archive
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '405':
+          description: Error occured
+  
+            
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+        profile_pic:
+          type: string
+          example: john@email.com.jpg
+        active:
+          type: boolean
+          example: 0
+        fs_uniquifier:
+          type: string
+          example: '05f43aa194204d3ebccb7d9e934d5117'
+          
+    UserPosts:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        account_id:
+          type: string
+          example: 1
+        title:
+          type: string
+          example: Visited Cambrige
+        caption:
+          type: string
+          example: It feels good to be back in Cambridge
+        post_picture:
+          type: string
+          example: 1_1.jpg
+        archive:
+          type: boolean
+          example: 0
+        timestamp:
+          type: string
+          example: date-time
+          
+    Follows:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        account_id:
+          type: string
+          example: 1
+        folllowing_others:
+          type: integer
+          example: 3
+
+          
+   

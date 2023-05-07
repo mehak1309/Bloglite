@@ -1,0 +1,128 @@
+.container {    
+    margin-left:100px;
+  }
+
+a:link {
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+  }
+a:hover {
+    text-decoration: underline;
+  }
+
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
+}
+
+img {
+    object-fit: cover;
+}
+
+.left1{
+  margin-left: 10px;
+}
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgb(115, 149, 193);;
+  }
+
+  .top1{
+    margin-top: -70px;
+  }
+
+  .avatar1 {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 5%;
+  }
+  .container5 {    
+    width:500px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-color: rgb(221, 221, 221);
+    border-style: groove;
+    border-width: 0.5px;
+    height:350px;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .container4 {    
+    width:500px;
+    margin: auto;    
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .container1 {    
+    width:400px;
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgb(221, 221, 221);
+    border-style: groove;
+    border-width: 0.5px;
+    height:340px;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .container3{    
+    width:400px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 180px;
+    border-color: rgb(221, 221, 221);
+    border-style: groove;
+    border-width: 0.5px;
+    height:70px;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .container7{    
+    width:500px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 280px;
+    border-color: rgb(221, 221, 221);
+    border-style: groove;
+    border-width: 0.5px;
+    height:70px;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .container2 {    
+    width:500px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-style: groove;
+    border-width: 0.5px;
+    height:480px;
+    border-radius: 5px;
+    padding: 20px;
+  }
