@@ -81,4 +81,4 @@ To edit or delete your account, go to the account  page and click the "Edit" or 
 
 Mehak – 21f1006390@ds.study.iitm.ac.in
 
-Distributed under the IITM license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See ``LICENSE`` for more information.
